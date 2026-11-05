@@ -1,0 +1,77 @@
+{
+  "origen": "modelo_simulado_grafo_y_herramientas_reales",
+  "advertencia": "Decisiones guionadas; no valida autonomía OpenAI.",
+  "sqlite_reabierto_entre_turnos": true,
+  "turnos": [
+    {
+      "thread_id": "demo-102",
+      "eventos": [
+        {
+          "tipo": "usuario",
+          "contenido": "¿Cuántos pedidos tuvo el cliente 102 y cuál fue el total?"
+        },
+        {
+          "tipo": "acciones",
+          "llamadas": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "cursor": 0
+              },
+              "id": "demo-0",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_pedidos",
+          "llamada_id": "demo-0",
+          "estado": "success",
+          "contenido": "{\"cliente_id\": 102, \"pedidos\": [{\"pedido_id\": 1001, \"fecha\": \"2026-10-01\", \"total_centavos\": 450000}, {\"pedido_id\": 1002, \"fecha\": \"2026-10-15\", \"total_centavos\": 600000}], \"moneda\": \"ARS\", \"completo\": false, \"siguiente_cursor\": 2}"
+        },
+        {
+          "tipo": "acciones",
+          "llamadas": [
+            {
+              "name": "buscar_pedidos",
+              "args": {
+                "cliente_id": 102,
+                "cursor": 2
+              },
+              "id": "demo-2",
+              "type": "tool_call"
+            }
+          ]
+        },
+        {
+          "tipo": "observacion",
+          "herramienta": "buscar_pedidos",
+          "llamada_id": "demo-2",
+          "estado": "success",
+          "contenido": "{\"cliente_id\": 102, \"pedidos\": [{\"pedido_id\": 1003, \"fecha\": \"2026-10-28\", \"total_centavos\": 400000}], \"moneda\": \"ARS\", \"completo\": true, \"siguiente_cursor\": null}"
+        },
+        {
+          "tipo": "respuesta",
+          "contenido": "El cliente 102 tuvo 3 pedidos por ARS 14.500."
+        }
+      ],
+      "respuesta": "El cliente 102 tuvo 3 pedidos por ARS 14.500."
+    },
+    {
+      "thread_id": "demo-102",
+      "eventos": [
+        {
+          "tipo": "usuario",
+          "contenido": "¿y el último?"
+        },
+        {
+          "tipo": "respuesta",
+          "contenido": "El último fue el pedido 1003, del 28/10/2026, por ARS 4.000."
+        }
+      ],
+      "respuesta": "El último fue el pedido 1003, del 28/10/2026, por ARS 4.000."
+    }
+  ]
+}
